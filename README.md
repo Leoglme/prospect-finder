@@ -1,4 +1,5 @@
-prospect-finder
+# prospect-finder
+
 A Python-based tool designed to automate the discovery of local businesses without websites, enabling freelancers to identify potential clients for web development services. The script scrapes public data from sources like Google Maps or business directories (e.g., Pages Jaunes) to find businesses in a specified area, checks for the absence of a website, and exports the results to a CSV file for easy prospection.
 Features
 
