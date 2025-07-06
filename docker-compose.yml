@@ -1,13 +1,13 @@
 services:
   db_mariadb:
-    container_name: dealouz_db_mariadb
+    container_name: prospect_finder_db_mariadb
     image: mariadb:latest
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: dealouz
-      MYSQL_USER: testuser
-      MYSQL_PASSWORD: testpassword
+      MYSQL_DATABASE: prospect_finder
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
     ports:
       - '3310:3306'
     volumes:
@@ -16,7 +16,7 @@ services:
       - app-network
 
   phpmyadmin:
-    container_name: dealouz_phpmyadmin
+    container_name: prospect_finder_phpmyadmin
     image: phpmyadmin/phpmyadmin
     restart: always
     environment:

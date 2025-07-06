@@ -4,37 +4,42 @@ import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 import Prospect from '#models/prospect'
 
 /**
- * The EmailSent model represents an email sent to a prospect via Mailjet.
+ * The EmailSent model represents an emails sent to a prospect via Mailjet.
  */
-export default class EmailSent extends BaseModel {
+export default class EmailsSent extends BaseModel {
   /**
    * The unique identifier for the email sent record.
    */
   @column({ isPrimary: true })
+  // @required @example(1)
   declare public id: number
 
   /**
    * The ID of the associated prospect.
    */
   @column()
+  // @required @example(1)
   declare public prospect_id: number
 
   /**
    * The Mailjet ID of the sent email.
    */
   @column()
+  // @required @example('mj-1234567890')
   declare public mailjet_id: string
 
   /**
    * The timestamp when the email was sent.
    */
   @column.dateTime({ autoCreate: true })
+  // @required @example('2023-10-01T00:00:00Z')
   declare public sent_at: DateTime
 
   /**
    * The status of the email (e.g., "delivered", "bounced").
    */
   @column()
+  // @required @example('delivered')
   declare public status: string | null
 
   /**

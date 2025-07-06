@@ -1,12 +1,12 @@
 import factory from '@adonisjs/lucid/factories'
-import EmailSent from '#models/email_sent'
+import EmailsSent from '#models/emails_sent'
 import { DateTime } from 'luxon'
 
 /**
- * Factory to generate dummy EmailSent data
+ * Factory to generate dummy EmailsSent data
  */
-export const EmailSentFactory = factory
-  .define(EmailSent, async ({ faker }) => {
+export const EmailsSentFactory = factory
+  .define(EmailsSent, async ({ faker }) => {
     return {
       prospect_id: faker.number.int({ min: 1, max: 100 }),
       mailjet_id: faker.string.uuid(),

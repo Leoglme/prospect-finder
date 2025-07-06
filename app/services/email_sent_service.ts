@@ -1,6 +1,6 @@
 import logger from '@adonisjs/core/services/logger'
 import type { CreateEmailSentPayload, UpdateEmailSentPayload } from '#interfaces/email_sent_interface'
-import EmailSent from '#models/email_sent'
+import EmailSent from '#models/emails_sent'
 /**
  * Service to handle email sent operations
  * @class EmailSentService
