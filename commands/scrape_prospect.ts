@@ -80,7 +80,6 @@ export default class ScrapeProspect extends BaseCommand {
 
   public static async findBusinessesInCity(
     city: string,
-    limit: number = 20
   ): Promise<OpenStreetMapElement[]> {
     try {
       // Initialize the service

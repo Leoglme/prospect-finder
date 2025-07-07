@@ -2,6 +2,7 @@
  * Interface for creating a prospect
  */
 export interface CreateProspectPayload {
+  osm_id: number
   name?: string | null
   category?: string | null
   email?: string | null

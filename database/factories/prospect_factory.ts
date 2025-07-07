@@ -9,6 +9,7 @@ export const ProspectFactory = factory
   .define(Prospect, async ({ faker }) => {
     const hasWebsite = faker.datatype.boolean()
     return {
+      osm_id: faker.number.int({ min: 100000000, max: 999999999 }),
       name: faker.company.name(),
       category: faker.helpers.arrayElement(['restaurant', 'florist', 'plumber', 'bakery', 'supermarket', 'pharmacy']),
       email: faker.internet.email(),

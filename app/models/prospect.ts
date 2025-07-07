@@ -15,6 +15,13 @@ export default class Prospect extends BaseModel {
   declare public id: number
 
   /**
+   * The OpenStreetMap ID of the prospect.
+   */
+  @column()
+  // @example(123456789)
+  declare public osm_id: number
+
+  /**
    * The name of the prospect (e.g., "La p'tite fleuriste").
    */
   @column()

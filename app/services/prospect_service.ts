@@ -1,4 +1,3 @@
-import logger from '@adonisjs/core/services/logger'
 import type { CreateProspectPayload, UpdateProspectPayload } from '#interfaces/prospect_interface'
 import Prospect from '#models/prospect'
 
@@ -7,6 +6,21 @@ import Prospect from '#models/prospect'
  * @class ProspectService
  */
 export default class ProspectService {
+  /**
+   * Create multiple prospects using promise resolve all
+   * @param {CreateProspectPayload[]} payloads - Array of data to create prospects
+   * @returns {Promise<Prospect[]>} - A promise that resolves with the created prospects
+   */
+  public static async createProspects(payloads: CreateProspectPayload[]): Promise<Prospect[]> {
+    try {
+      const promises: Promise<Prospect>[] = payloads.map((payload: CreateProspectPayload): Promise<Prospect> => this.createProspect(payload))
+      return await Promise.all(promises)
+    } catch (error: any) {
+      console.error(error)
+      throw error
+    }
+  }
+
   /**
    * Create a new prospect
    * @param {CreateProspectPayload} payload - Data to create the prospect
@@ -22,7 +36,7 @@ export default class ProspectService {
       }
       return await Prospect.create(payload)
     } catch (error: any) {
-      logger.error(error)
+      console.error(error)
       throw error
     }
   }
@@ -35,7 +49,7 @@ export default class ProspectService {
     try {
       return await Prospect.all()
     } catch (error: any) {
-      logger.error(error)
+      console.error(error)
       throw error
     }
   }
@@ -49,7 +63,7 @@ export default class ProspectService {
     try {
       return await Prospect.findOrFail(id)
     } catch (error: any) {
-      logger.error(error)
+      console.error(error)
       throw error
     }
   }
@@ -73,7 +87,7 @@ export default class ProspectService {
       await prospect.refresh()
       return prospect
     } catch (error: any) {
-      logger.error(error)
+      console.error(error)
       throw error
     }
   }
@@ -88,7 +102,21 @@ export default class ProspectService {
       if (!email) return null
       return await Prospect.query().where('email', email).first()
     } catch (error: any) {
-      logger.error(error)
+      console.error(error)
+      throw error
+    }
+  }
+
+  /**
+   * Find prospects by osm_id
+   * @param {number} osm_id - The OpenStreetMap ID of the prospect
+   * @returns {Promise<Prospect | null>} - A promise that resolves with the prospect or null if not found
+   */
+  public static async findProspectByOsmId(osm_id: number): Promise<Prospect | null> {
+    try {
+      return await Prospect.query().where('osm_id', osm_id).first()
+    } catch (error: any) {
+      console.error(error)
       throw error
     }
   }
@@ -104,7 +132,7 @@ export default class ProspectService {
         .whereNotNull('email')
         .where('contacted', false)
     } catch (error: any) {
-      logger.error(error)
+      console.error(error)
       throw error
     }
   }
